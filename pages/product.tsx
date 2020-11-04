@@ -18,20 +18,12 @@ const AddProduct: React.FC = (props) => {
     const [categories, setCategories] = useState([]);
     const router = useRouter()
     const postProduct = async () => {
-        const response = await fetch(`${Url}/api/product/add-product`, {
+        const response = await fetch(`${Url}/api/product/add-product?name=${name}&price=${price}&brand=${brand}&status=${status}&image=${image}&category=${category}`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name,
-                price: price,
-                brand: brand,
-                status: status,
-                image: image,
-                category: category
-            })
+            }
         })
         const res = await response.json()
         return res.status

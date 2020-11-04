@@ -16,31 +16,21 @@ const AddOrders: React.FC = () => {
 
     const postOrder = async () => {
         if (orderList != undefined) {
-            await fetch(`${Url}/api/orders/add-orders`, {
+            await fetch(`${Url}/api/orders/add-orders?customer_id=${1}&store_id=${1}&admin_id=${1}`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    customer_id: 1,
-                    store_id: 1,
-                    admin_id: 1
-                })
+                }
             })
             await orderList.map(async item => {
                 if (item.product != undefined && item.brand != undefined && item.category != undefined && item.quantity != undefined) {
-                    await  fetch(`${Url}/api/orders/add-orders-detail`, {
+                    await  fetch(`${Url}/api/orders/add-orders-detail?orders_id=${position}&product_id=${item.product}&quantity=${item.quantity}`, {
                         method: 'POST',
                         headers: {
                             Accept: 'application/json',
                             'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            orders_id: position,
-                            product_id: item.product,
-                            quantity: item.quantity,
-                        })
+                        }
                     })
                 }
             })
@@ -197,7 +187,7 @@ const AddOrders: React.FC = () => {
                     <Form.Item shouldUpdate={true}>{() => (
                         <Button type="default" onClick={async () => {
                             await postOrder()
-                            // await router.push('/orders')
+                            await router.push('/orders')
                         }}>Done</Button>)}
                     </Form.Item>
                 </Form>
