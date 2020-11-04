@@ -1,7 +1,8 @@
 import Config from '../../../config/config'
+import {NextApiRequest, NextApiResponse} from "next";
 
-const ordersDetail = (request, response) => {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+export default function (request: NextApiRequest, response: NextApiResponse) {
+    // process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
     const ordersDetail = request.body
     if (ordersDetail != null) {
         Config.query('insert into ordersdetail (orders_id,product_id,quantity,created_at,updated_at) values ($1,$2,$3,current_timestamp,current_timestamp);',
@@ -17,5 +18,3 @@ const ordersDetail = (request, response) => {
         response.send({status: "Fail"})
     }
 }
-
-export default ordersDetail;

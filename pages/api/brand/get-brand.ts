@@ -1,7 +1,8 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import Config from "../../../config/config";
 
-const Brand = (request, response) => {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+export default function (request: NextApiRequest, response: NextApiResponse) {
+    // process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
     Config.query('select * from brand;', (err, res) => {
         if (err) {
             console.log(err)
@@ -11,5 +12,3 @@ const Brand = (request, response) => {
         }
     })
 }
-
-export default Brand;

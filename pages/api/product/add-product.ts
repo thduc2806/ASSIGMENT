@@ -1,7 +1,8 @@
 import Config from '../../../config/config'
+import {NextApiRequest, NextApiResponse} from "next";
 
-const Product = (request, response) => {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+export default async function (request: NextApiRequest, response: NextApiResponse) {
+    // process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
     const product = request.body
     if (product != null) {
         Config.query('insert into product'
@@ -19,5 +20,3 @@ const Product = (request, response) => {
         response.send({status: "Fail"})
     }
 }
-
-export default Product;

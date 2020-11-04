@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev && next export",
-    "build": "next build",
-    "start": "next start -p $PORT"
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start"
   },
   "dependencies": {
     "antd": "^4.6.5",
+    "cors": "^2.8.5",
     "next": "9.5.3",
     "next-images": "^1.4.1",
     "node-sass": "^4.14.1",

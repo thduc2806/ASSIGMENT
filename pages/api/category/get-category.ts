@@ -1,7 +1,8 @@
 import Config from "../../../config/config";
+import {NextApiRequest, NextApiResponse} from "next";
 
-const Category = (request, response) => {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+export default function (request: NextApiRequest, response: NextApiResponse) {
+    // process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
     Config.query('select * from category;', (err, res) => {
         if (err) {
             console.log(err)
@@ -11,5 +12,3 @@ const Category = (request, response) => {
         }
     })
 }
-
-export default Category;
